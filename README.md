@@ -1,0 +1,71 @@
+# AllRatesToday for Claude Code
+
+Currency exchange rates your coding agent can actually trust — because it
+fetches them instead of remembering them.
+
+```
+/plugin marketplace add AllRates-Today/claude-code-plugin
+/plugin install allratestoday@allratestoday
+```
+
+**No API key needed to start.** Both MCP servers run keyless out of the box.
+
+## What you get
+
+**Two skills** that load themselves when the work calls for them:
+
+- `exchange-rates` — live mid-market rates, currency conversion, localized
+  pricing, historical series, and the rules for wiring any of it into a
+  codebase (cache by pair, money in minor units, explicit failure behaviour).
+- `official-rates` — the published rate from a *named* institution, which is
+  what invoices, VAT returns, customs valuation and statutory accounting
+  actually require. 100+ central banks and tax authorities.
+
+**Five slash commands:**
+
+| Command | Does |
+|---|---|
+| `/rate USD EUR` | Current rate for a pair |
+| `/convert 1500 USD to EUR` | Convert an amount, rounded to the target currency's precision |
+| `/official-rate ecb USD EUR 2026-01-15` | The rate a named authority published on a date |
+| `/fx-history USD EUR 30d` | Historical series for a pair |
+| `/add-currency-support` | Reads your project and wires rates in the way that project already does things |
+
+**Two MCP servers**, so the model can fetch rates directly:
+
+- [`@allratestoday/mcp-server`](https://www.npmjs.com/package/@allratestoday/mcp-server)
+  — live mid-market rates, 160+ currencies
+- [`@allratestoday/central-bank-mcp`](https://www.npmjs.com/package/@allratestoday/central-bank-mcp)
+  — official published tables, history, publication calendars
+
+## Keyless vs keyed
+
+Installed with no configuration, the plugin answers from the open, edge-cached
+endpoints: the official ECB daily reference rate (~30 major currencies) and the
+latest published table of any covered central bank or tax authority. That is
+enough for most "what is this in EUR" work and for display-only features.
+
+A **free API key** (<https://allratestoday.com/register> — no card, under a
+minute) adds real-time mid-market rates across 160+ currencies, historical
+series, multi-target lookups, rates on past dates, and publication calendars.
+Set it once and both servers pick it up:
+
+```bash
+export ALLRATES_API_KEY=art_live_...
+```
+
+## Why it exists
+
+An LLM asked for an exchange rate will happily produce one from training data.
+It will look right. It will be months stale, and in a checkout or an invoice
+that is a financial bug, not a rounding error. This plugin makes fetching the
+rate the path of least resistance, and makes the mid-market/official
+distinction — the one that quietly breaks tax filings — explicit.
+
+## Links
+
+- API docs: <https://allratestoday.com/docs> · for agents: <https://allratestoday.com/llms.txt>
+- Central bank coverage: <https://allratestoday.com/central-bank-rates-api/>
+- Pricing: <https://allratestoday.com/pricing> · Support: support@allratestoday.com
+
+MIT licensed.

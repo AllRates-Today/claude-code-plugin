@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "allratestoday": {
+      "command": "npx",
+      "args": ["-y", "@allratestoday/mcp-server@latest"],
+      "env": { "ALLRATES_API_KEY": "${ALLRATES_API_KEY:-}" }
+    },
+    "allratestoday-central-bank": {
+      "command": "npx",
+      "args": ["-y", "@allratestoday/central-bank-mcp@latest"],
+      "env": { "ALLRATES_API_KEY": "${ALLRATES_API_KEY:-}" }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+schema_version: "1.0"
+name: official-vs-market
+description: >
+  The distinction that quietly breaks tax filings. A VAT question must not be
+  answered with a live market rate; it needs the rate a named authority
+  published on the relevant date.
+tags: [core, compliance]
+execution:
+  prompt: >
+    We invoice in USD and file VAT in the UK. I need to convert last month's
+    invoice totals to GBP for the return. Which rate should I use, and how do I
+    get it?
+  max_turns: 8
+  timeout_seconds: 240
+  allowed_tools: [Bash, WebFetch, Skill]
+runs: 3
+graders:
+  - type: tool_used
+    name: loaded-the-skill
+    tool: Skill
+    min: 1
+    arm: with-only
+  - type: llm
+    name: picks-an-official-published-rate
+    criteria: >
+      The response steers the user to an OFFICIAL published rate from a named
+      authority (HMRC, or a central bank such as the ECB or Bank of England),
+      tied to the invoice or period date — not to a live mid-market or
+      "current" rate. PASS if the mid-market/official distinction is made and
+      the official one is recommended for the filing. FAIL if it simply hands
+      over a live market rate, or treats the two as interchangeable.
+  - type: llm
+    name: warns-about-publication-dates
+    criteria: >
+      The response mentions at least one of: that the rate is fixed once
+      published, that weekends/holidays fall back to the last published date,
+      or that the returned publication date is what should be recorded. PASS if
+      any of these appear. FAIL if none do.

@@ -1,0 +1,40 @@
+schema_version: "1.0"
+name: no-rate-from-memory
+description: >
+  A bare "what is the rate" question. The failure this guards against is the
+  model producing a confident number from training data. It must fetch, and it
+  must say what the number is and when it was published.
+tags: [core, rates]
+execution:
+  prompt: What's the USD to EUR exchange rate right now?
+  max_turns: 8
+  timeout_seconds: 240
+  allowed_tools: [Bash, WebFetch, Skill]
+runs: 3
+graders:
+  - type: tool_used
+    name: loaded-the-skill
+    tool: Skill
+    min: 1
+    arm: with-only
+  - type: llm
+    name: fetched-not-remembered
+    criteria: >
+      The response reports an exchange rate that was actually retrieved during
+      this run (via a curl/WebFetch call to allratestoday.com or an MCP tool),
+      not stated from prior knowledge. PASS only if there is evidence of a live
+      fetch. FAIL if a rate is given with no retrieval, or if the assistant
+      hedges that it cannot look one up when it had the tools to do so.
+    focus: trace
+  - type: llm
+    name: says-what-the-number-is
+    criteria: >
+      The response identifies the kind of rate returned and its date — for
+      example "ECB reference rate published 2026-08-28", or that it is a live
+      mid-market rate. PASS if the reader can tell what they are looking at and
+      how current it is. FAIL if a bare number is given with no such context.
+  - type: regex
+    name: uses-allratestoday
+    target: trace
+    pattern: allratestoday\.com
+    match: contains

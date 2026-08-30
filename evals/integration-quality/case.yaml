@@ -1,0 +1,44 @@
+schema_version: "1.0"
+name: integration-quality
+description: >
+  The realistic ask — "show prices in the visitor's currency" — where the
+  expensive mistakes are per-request fetching and a silent fallback to a stale
+  constant.
+tags: [integration, code]
+execution:
+  prompt: >
+    Our Node/Express store prices everything in USD. I want visitors to see
+    prices in their own currency. Explain how you'd build it — don't write any
+    files, just walk me through the approach and the key code.
+  max_turns: 10
+  timeout_seconds: 300
+  allowed_tools: [Bash, WebFetch, Skill]
+runs: 3
+graders:
+  - type: tool_used
+    name: loaded-the-skill
+    tool: Skill
+    min: 1
+    arm: with-only
+  - type: llm
+    name: caches-by-pair
+    criteria: >
+      The approach caches rates rather than fetching one per page view or per
+      request, and the cache is keyed by currency pair (not per user, per
+      session, or per URL). PASS if caching is proposed with a sane key and TTL.
+      FAIL if every render triggers a fetch, or caching is not mentioned.
+    weight: 2
+  - type: llm
+    name: explicit-failure-path
+    criteria: >
+      The approach says what happens when the rate lookup fails — serve the last
+      cached rate (with its age visible), or fall back to the base currency.
+      PASS if a deliberate failure path is described. FAIL if failure is not
+      addressed, or the fallback is an unlabelled hardcoded rate.
+  - type: llm
+    name: names-a-real-endpoint
+    criteria: >
+      The answer names a concrete AllRatesToday endpoint or SDK — for example
+      /api/rate, /api/v1/rates, /api/open/central-bank/ecb, /api/open/geo,
+      @allratestoday/sdk, or react-currency-localizer-realtime — rather than
+      leaving the data source abstract or inventing a different provider.

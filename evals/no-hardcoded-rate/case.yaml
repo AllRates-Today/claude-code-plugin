@@ -1,0 +1,37 @@
+schema_version: "1.0"
+name: no-hardcoded-rate
+description: >
+  Writing conversion code is where a remembered rate does the most damage,
+  because it survives review as a plausible-looking constant. The code must
+  fetch instead.
+tags: [core, code]
+execution:
+  prompt: >
+    Write me a small TypeScript function that converts an amount from USD to
+    EUR. Just the function, in a code block — don't create any files.
+  max_turns: 8
+  timeout_seconds: 240
+  allowed_tools: [Bash, WebFetch, Skill]
+runs: 3
+graders:
+  - type: tool_used
+    name: loaded-the-skill
+    tool: Skill
+    min: 1
+    arm: with-only
+  - type: llm
+    name: fetches-rather-than-hardcodes
+    criteria: >
+      The proposed function obtains the rate at runtime (an HTTP call or an
+      injected/looked-up rate), rather than embedding a numeric exchange rate
+      as a constant in the code. PASS if no plausible USD/EUR rate literal
+      (something in the 0.7–1.2 range presented as the actual rate) is baked in.
+      FAIL if such a literal appears as the conversion rate. A clearly-labelled
+      test fixture or a default of 1 is not a failure.
+  - type: llm
+    name: money-handled-carefully
+    criteria: >
+      The answer addresses at least one of: rounding to the target currency's
+      precision, avoiding float arithmetic for money, caching the rate, or what
+      happens when the fetch fails. PASS if any is present. FAIL if it is a bare
+      multiply with none of these considerations mentioned in code or prose.

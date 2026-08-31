@@ -70,7 +70,14 @@ $client = new AllRatesToday(getenv('ALLRATES_API_KEY'));
 $rate = $client->getRate('USD', 'EUR');
 ```
 
-Per-bank SDKs exist for every covered institution
+For official published rates there are dedicated packages, keyless by default:
+
+```bash
+npm install @allratestoday/central-bank    # JS/TS
+pip install allratestoday-central-bank     # Python
+```
+
+Per-bank SDKs also exist for every covered institution
 (`npm i ecb-exchange-rate`, `hmrc-exchange-rate`, …) — see the `official-rates`
 skill.
 

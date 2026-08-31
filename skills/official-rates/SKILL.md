@@ -77,4 +77,31 @@ ones: `ecb`, `fed`, `boe`, `boj`, `pboc`, `rbi`, `snb`, `rba`, `boc`, `cbr`,
 packages (`npm i ecb-exchange-rate`, `hmrc-exchange-rate`, …) for pinning a
 single institution into a project without the whole API surface.
 
+## Putting it in a project
+
+Dedicated SDKs, keyless by default — `latest()` needs no API key, and the
+metered methods raise before making a request rather than returning a 401:
+
+```bash
+npm install @allratestoday/central-bank     # JS/TS
+pip install allratestoday-central-bank      # Python
+```
+
+```ts
+import { CentralBankRates } from '@allratestoday/central-bank';
+const cb = new CentralBankRates();
+const pair = await cb.latest('ecb', { source: 'USD', target: 'EUR' });
+// pair.rate, pair.rate_date, pair.derived
+```
+
+```python
+from allratestoday_central_bank import CentralBankRates
+cb = CentralBankRates()
+pair = cb.latest("ecb", source="USD", target="EUR")
+```
+
+Methods: `latest` (keyless), `sources`, `for_date`/`forDate`, `history`,
+`availability`, `compare`. Do NOT reach for the mid-market packages
+(`@allratestoday/sdk`, `allratestoday`) here — they do not serve published rates.
+
 Hub page: <https://allratestoday.com/central-bank-rates-api/>

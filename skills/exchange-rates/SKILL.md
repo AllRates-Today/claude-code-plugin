@@ -83,6 +83,10 @@ For per-language snippets, response shapes, error codes, output formats
 (json/csv/xml/xlsx) and the React price-localizer, read
 `references/integration.md`.
 
+These packages serve **mid-market** rates only. For official published rates,
+install `@allratestoday/central-bank` or `allratestoday-central-bank` instead
+and read `../official-rates/SKILL.md`.
+
 ## Four things that go wrong
 
 1. **Rate fetched per request.** Rates move on the order of seconds and quotas

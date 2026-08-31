@@ -38,6 +38,13 @@ fetches them instead of remembering them.
 - [`@allratestoday/central-bank-mcp`](https://www.npmjs.com/package/@allratestoday/central-bank-mcp)
   — official published tables, history, publication calendars
 
+The skills also point at the right package when Claude writes the integration:
+[`@allratestoday/sdk`](https://www.npmjs.com/package/@allratestoday/sdk) /
+[`allratestoday`](https://pypi.org/project/allratestoday/) for mid-market rates,
+[`@allratestoday/central-bank`](https://www.npmjs.com/package/@allratestoday/central-bank) /
+[`allratestoday-central-bank`](https://pypi.org/project/allratestoday-central-bank/)
+for official published ones.
+
 ## Keyless vs keyed
 
 Installed with no configuration, the plugin answers from the open, edge-cached

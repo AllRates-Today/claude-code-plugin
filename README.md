@@ -19,7 +19,7 @@ fetches them instead of remembering them.
   codebase (cache by pair, money in minor units, explicit failure behaviour).
 - `official-rates` — the published rate from a *named* institution, which is
   what invoices, VAT returns, customs valuation and statutory accounting
-  actually require. 100+ central banks and tax authorities.
+  actually require. 121 central banks and tax authorities.
 
 **Five slash commands:**
 

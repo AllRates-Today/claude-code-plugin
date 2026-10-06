@@ -10,7 +10,7 @@
     {
       "name": "allratestoday",
       "source": "./",
-      "description": "Currency conversion and exchange rates that are actually current: live mid-market rates for 160+ currencies, official published rates from 100+ central banks and tax authorities, and integration guidance for adding either to your codebase. Works with no API key.",
+      "description": "Currency conversion and exchange rates that are actually current: live mid-market rates for 160+ currencies, official published rates from 121 central banks and tax authorities, and integration guidance for adding either to your codebase. Works with no API key.",
       "category": "data",
       "author": {
         "name": "AllRatesToday"

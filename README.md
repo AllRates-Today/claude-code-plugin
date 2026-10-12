@@ -34,7 +34,7 @@ fetches them instead of remembering them.
 **Two MCP servers**, so the model can fetch rates directly:
 
 - [`@allratestoday/mcp-server`](https://www.npmjs.com/package/@allratestoday/mcp-server)
-  — live mid-market rates, 160+ currencies
+  — live mid-market rates, 160+ currencies, the Daily Reference Rate (16:00 London fix) and a `request_trial_key` tool that self-issues a 100-call, 7-day key when the keyless tools are not enough
 - [`@allratestoday/central-bank-mcp`](https://www.npmjs.com/package/@allratestoday/central-bank-mcp)
   — official published tables, history, publication calendars
 

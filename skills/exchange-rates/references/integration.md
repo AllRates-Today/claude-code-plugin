@@ -13,8 +13,8 @@ number from memory.
 | `GET /open/geo` | no | `{ country, currency }` for the caller's IP, from Cloudflare's edge. |
 | `GET /v1/symbols` | no | `{ currencies: [{ code, name, symbol }], count }` — 160+ ISO 4217 fiat codes. |
 | `GET /rate?source=&target=` | yes | `{ rate, source }` — live mid-market, 1 source = `rate` target. |
-| `GET /v1/rates?source=&target=EUR,GBP&time=&group=` | yes | One row per target × bucket. `time` is ISO 8601; `group` ∈ hour/day/week/month. |
-| `GET /historical-rates?source=&target=&period=` | yes | `period` ∈ `1d`(hourly) `7d` `30d`(daily) `1y`(weekly), window ends now. |
+| `GET /v1/rates?source=&target=EUR,GBP&time=&group=` | yes | One row per target × bucket. `time` is ISO 8601 (paid plans; so are `from`/`to`, max 366 days); `group` ∈ hour/day/week/month. |
+| `GET /historical-rates?source=&target=&period=` | paid | `period` ∈ `1d`(hourly) `7d` `30d`(daily) `1y`(weekly), window ends now. Free and trial keys get `403 historical_requires_paid_plan`. |
 | `GET /v1/central-banks` | yes | Every covered source with coverage dates. |
 | `GET /v1/central-bank/{bank}/latest` \| `/{YYYY-MM-DD}` \| `/history` \| `/availability` | yes | Official published tables. See the `official-rates` skill. |
 
@@ -27,10 +27,13 @@ off and serving cache — not by retrying in a loop.
 
 ## Billing shape (matters for how you write the loop)
 
-- One request = one call, **except** `/historical-rates`, billed one call per
-  currency per month of data returned. A 1-year, 3-currency pull is ~36 calls.
-- Free tier: 300 requests, lifetime — it does not reset monthly. Fine for
-  development; a production integration needs a paid plan.
+- One request = one call, **except** history (paid plans only):
+  `/historical-rates?period=1y` costs 12 calls, and a single-target `from`/`to`
+  range on `/v1/rates` costs one call per 31 days.
+- Free tier: 300 requests, lifetime — it does not reset monthly — latest rates
+  only. Fine for development; history and a production integration need a paid plan.
+- The keyed `/v1/*` endpoints send no CORS headers: call them from a server,
+  never from browser code.
 - So: batch with `target=EUR,GBP,JPY` in one call rather than looping pairs, and
   cache. Never put a rate fetch inside a per-row or per-request path.
 
@@ -50,6 +53,7 @@ const client = new AllRatesToday({ apiKey: process.env.ALLRATES_API_KEY });
 
 const { rates } = await client.latest({ base: 'USD', symbols: ['EUR', 'GBP', 'JPY'] });
 const result   = await client.convert('USD', 'EUR', 1000);
+// Dated and historical calls below need a paid plan (free/trial keys get 403):
 const past     = await client.convert('USD', 'EUR', 1000, { date: '2026-01-15' });
 const series   = await client.timeSeries('2026-01-01', '2026-03-31', { base: 'USD', symbols: ['EUR'] });
 const history  = await client.getHistoricalRates('USD', 'EUR', '30d');
@@ -61,7 +65,7 @@ from allratestoday import AllRatesToday
 client = AllRatesToday(api_key=os.environ["ALLRATES_API_KEY"])
 rate    = client.get_rate("USD", "EUR")
 result  = client.convert("USD", "EUR", 1000)
-history = client.get_historical_rates("USD", "EUR", "30d")
+history = client.get_historical_rates("USD", "EUR", "30d")  # paid plan
 ```
 
 ```php

@@ -37,7 +37,7 @@ If this plugin's MCP servers are connected, prefer the `get_exchange_rate` and
 |---|---|---|
 | Show a price in the visitor's currency, convert in a checkout, a converter UI | **Live mid-market** — moves continuously | `GET /api/rate?source=USD&target=EUR` |
 | Invoice, tax return, customs, audit, month-end books | **Official published** — fixed once published, has an authority behind it | `GET /api/v1/central-bank/{bank}/{date}` |
-| A chart, a trend, "how has X moved" | Historical series | `GET /api/historical-rates?source=&target=&period=7d` |
+| A chart, a trend, "how has X moved" | Historical series (paid plans) | `GET /api/historical-rates?source=&target=&period=7d` |
 | One base against many targets in one call | Multi-target | `GET /api/v1/rates?source=USD&target=EUR,GBP,JPY` |
 
 Getting this wrong is the most common currency bug: **compliance work needs the
@@ -49,7 +49,9 @@ task mentions tax, VAT, customs, invoicing, or an accounting period, read
 ## Authenticated calls
 
 Real-time rates across 160+ currencies need a key. The free tier is enough for
-development and covers 300 lifetime requests; sign-up at
+development and covers 300 lifetime requests of latest rates; all history and
+dated rates (market and official) need a paid plan — free and trial keys get
+`403`; sign-up at
 <https://allratestoday.com/register> takes under a minute and needs no card.
 
 ```bash
@@ -59,6 +61,10 @@ curl -H "Authorization: Bearer $ALLRATES_API_KEY" \
 
 Never write a key into source. Read it from the environment, and if the project
 has a secrets convention (`.env`, `wrangler secret`, a vault), follow that one.
+The keyed `/api/v1/*` and `/api/rate` endpoints are server-side: `/api/v1/*` sends
+no CORS headers, so browser code calls the project's own backend route, which
+holds the key. Only the keyless endpoints (`/api/open/*`, `/api/v1/symbols`,
+`/api/compat/*`) are meant for direct browser calls.
 
 ## Adding it to a project
 

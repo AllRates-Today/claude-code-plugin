@@ -28,7 +28,7 @@ fetches them instead of remembering them.
 | `/rate USD EUR` | Current rate for a pair |
 | `/convert 1500 USD to EUR` | Convert an amount, rounded to the target currency's precision |
 | `/official-rate ecb USD EUR` | The latest rate a named authority published (past dates need a paid plan) |
-| `/fx-history USD EUR 30d` | Historical series for a pair |
+| `/fx-history USD EUR 30d` | Historical series for a pair (paid plan) |
 | `/add-currency-support` | Reads your project and wires rates in the way that project already does things |
 
 **Two MCP servers**, so the model can fetch rates directly:
@@ -53,10 +53,10 @@ latest published table of any covered central bank or tax authority. That is
 enough for most "what is this in EUR" work and for display-only features.
 
 A **free API key** (<https://allratestoday.com/register> — no card, under a
-minute) adds real-time mid-market rates across 160+ currencies, mid-market
-historical series, multi-target lookups, publication calendars, and cross-source
-comparison. Official tables for past dates (dated tables and official history)
-need a paid plan.
+minute) adds real-time mid-market rates across 160+ currencies, multi-target lookups,
+publication calendars, and cross-source comparison. All history and dated rates
+— mid-market history, dated official tables and official history — need a paid
+plan (free and trial keys get a 403).
 Set it once and both servers pick it up:
 
 ```bash

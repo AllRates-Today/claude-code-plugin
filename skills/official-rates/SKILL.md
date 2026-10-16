@@ -34,18 +34,21 @@ back to allratestoday.com — the response carries the exact wording in
 With this plugin's MCP servers connected, `list_central_banks` and
 `get_official_rates` do the same without shelling out.
 
-## Keyed: dates, history, calendars, cross-source comparison
+## Keyed: latest, calendars, cross-source comparison, and (paid) dates and history
 
 ```bash
 AUTH="Authorization: Bearer $ALLRATES_API_KEY"
+# any key, including the free one
 curl -H "$AUTH" "https://allratestoday.com/api/v1/central-bank/ecb/latest"
-curl -H "$AUTH" "https://allratestoday.com/api/v1/central-bank/ecb/2026-01-15"
-curl -H "$AUTH" "https://allratestoday.com/api/v1/central-bank/ecb/history?symbol=USD&from=2026-01-01&to=2026-03-31"
 curl -H "$AUTH" "https://allratestoday.com/api/v1/central-bank/ecb/availability?year=2026"
 curl -H "$AUTH" "https://allratestoday.com/api/v1/central-banks/rates?source=USD&target=EUR"
+# paid plan only: free and trial keys get 403
+curl -H "$AUTH" "https://allratestoday.com/api/v1/central-bank/ecb/2026-01-15"
+curl -H "$AUTH" "https://allratestoday.com/api/v1/central-bank/ecb/history?symbol=USD&from=2026-01-01&to=2026-03-31"
 ```
 
-Free key at <https://allratestoday.com/register>. Add `?format=csv|xlsx|xml` to
+Free key at <https://allratestoday.com/register> (latest tables, calendars and
+comparisons); a rate for a specific past date needs a paid plan. Add `?format=csv|xlsx|xml` to
 any table endpoint when the deliverable is a file for someone in finance.
 
 ## The rules that bite

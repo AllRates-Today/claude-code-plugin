@@ -27,7 +27,7 @@ fetches them instead of remembering them.
 |---|---|
 | `/rate USD EUR` | Current rate for a pair |
 | `/convert 1500 USD to EUR` | Convert an amount, rounded to the target currency's precision |
-| `/official-rate ecb USD EUR 2026-01-15` | The rate a named authority published on a date |
+| `/official-rate ecb USD EUR` | The latest rate a named authority published (past dates need a paid plan) |
 | `/fx-history USD EUR 30d` | Historical series for a pair |
 | `/add-currency-support` | Reads your project and wires rates in the way that project already does things |
 
@@ -36,7 +36,7 @@ fetches them instead of remembering them.
 - [`@allratestoday/mcp-server`](https://www.npmjs.com/package/@allratestoday/mcp-server)
   — live mid-market rates, 160+ currencies, the Daily Reference Rate (16:00 London fix) and a `request_trial_key` tool that self-issues a 100-call, 7-day key when the keyless tools are not enough
 - [`@allratestoday/central-bank-mcp`](https://www.npmjs.com/package/@allratestoday/central-bank-mcp)
-  — official published tables, history, publication calendars
+  — official published tables, publication calendars, and (paid plan) dated tables and history
 
 The skills also point at the right package when Claude writes the integration:
 [`@allratestoday/sdk`](https://www.npmjs.com/package/@allratestoday/sdk) /
@@ -53,8 +53,10 @@ latest published table of any covered central bank or tax authority. That is
 enough for most "what is this in EUR" work and for display-only features.
 
 A **free API key** (<https://allratestoday.com/register> — no card, under a
-minute) adds real-time mid-market rates across 160+ currencies, historical
-series, multi-target lookups, rates on past dates, and publication calendars.
+minute) adds real-time mid-market rates across 160+ currencies, mid-market
+historical series, multi-target lookups, publication calendars, and cross-source
+comparison. Official tables for past dates (dated tables and official history)
+need a paid plan.
 Set it once and both servers pick it up:
 
 ```bash

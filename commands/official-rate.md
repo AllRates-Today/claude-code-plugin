@@ -1,6 +1,6 @@
 ---
 description: Get the official rate published by a central bank or tax authority
-argument-hint: [ecb USD EUR 2026-01-15]
+argument-hint: [ecb USD EUR]
 allowed-tools: [Bash, Read]
 ---
 
@@ -20,7 +20,8 @@ you are unsure of its code, list the covered sources first — MCP
   ```bash
   curl -sS "https://allratestoday.com/api/open/central-bank/BANK?source=SRC&target=TGT"
   ```
-- A specific past date (needs `ALLRATES_API_KEY`):
+- A specific past date (needs `ALLRATES_API_KEY` on a paid plan; free and
+  trial keys get `403`, so say so rather than retrying):
   ```bash
   curl -sS -H "Authorization: Bearer $ALLRATES_API_KEY" \
     "https://allratestoday.com/api/v1/central-bank/BANK/YYYY-MM-DD?source=SRC&target=TGT"

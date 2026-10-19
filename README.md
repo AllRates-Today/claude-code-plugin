@@ -76,5 +76,9 @@ distinction — the one that quietly breaks tax filings — explicit.
 - API docs: <https://allratestoday.com/docs> · for agents: <https://allratestoday.com/llms.txt>
 - Central bank coverage: <https://allratestoday.com/central-bank-rates-api/>
 - Pricing: <https://allratestoday.com/pricing> · Support: support@allratestoday.com
+- [Register (Free)](https://allratestoday.com/register)
+- [Dashboard](https://allratestoday.com/profile)
+- [Status](https://allratestoday.com/status)
+- [GitHub](https://github.com/AllRates-Today/claude-code-plugin)
 
 MIT licensed.

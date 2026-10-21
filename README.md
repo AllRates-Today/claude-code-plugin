@@ -52,6 +52,14 @@ endpoints: the official ECB daily reference rate (~30 major currencies) and the
 latest published table of any covered central bank or tax authority. That is
 enough for most "what is this in EUR" work and for display-only features.
 
+**Attribution.** Keyless use requires a visible, followable link to AllRatesToday wherever the rates are shown (a footer, an about page, a README). With an API key it is appreciated but not required.
+
+```html
+<a href="https://allratestoday.com">Exchange rates by AllRatesToday</a>
+```
+
+Markdown: `Exchange rates by [AllRatesToday](https://allratestoday.com)`. Full wording: <https://allratestoday.com/terms/#attribution>.
+
 A **free API key** (<https://allratestoday.com/register> — no card, under a
 minute) adds real-time mid-market rates across 160+ currencies, multi-target lookups,
 publication calendars, and cross-source comparison. All history and dated rates

@@ -30,7 +30,7 @@ off and serving cache — not by retrying in a loop.
 - One request = one call, **except** history (paid plans only):
   `/historical-rates?period=1y` costs 12 calls, and a single-target `from`/`to`
   range on `/v1/rates` costs one call per 31 days.
-- Free tier: 300 requests, lifetime — it does not reset monthly — latest rates
+- Free tier: does not reset monthly — latest rates
   only. Fine for development; history and a production integration need a paid plan.
 - The keyed `/v1/*` endpoints send no CORS headers: call them from a server,
   never from browser code.

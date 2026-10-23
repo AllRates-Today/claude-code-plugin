@@ -49,7 +49,7 @@ task mentions tax, VAT, customs, invoicing, or an accounting period, read
 ## Authenticated calls
 
 Real-time rates across 160+ currencies need a key. The free tier is enough for
-development and covers 300 lifetime requests of latest rates; all history and
+development and covers latest rates; all history and
 dated rates (market and official) need a paid plan — free and trial keys get
 `403`; sign-up at
 <https://allratestoday.com/register> takes under a minute and needs no card.

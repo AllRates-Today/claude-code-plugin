@@ -49,7 +49,7 @@ go get github.com/AllRates-Today/allratestoday-go
 
 ```js
 import AllRatesToday from '@allratestoday/sdk';
-const client = new AllRatesToday({ apiKey: process.env.ALLRATES_API_KEY });
+const client = new AllRatesToday({ apiKey: API_KEY }); // from the project's secret store
 
 const { rates } = await client.latest({ base: 'USD', symbols: ['EUR', 'GBP', 'JPY'] });
 const result   = await client.convert('USD', 'EUR', 1000);
@@ -62,7 +62,7 @@ const { symbols } = await client.symbols();
 
 ```python
 from allratestoday import AllRatesToday
-client = AllRatesToday(api_key=os.environ["ALLRATES_API_KEY"])
+client = AllRatesToday(api_key=API_KEY)  # from the project's secret store
 rate    = client.get_rate("USD", "EUR")
 result  = client.convert("USD", "EUR", 1000)
 history = client.get_historical_rates("USD", "EUR", "30d")  # paid plan
@@ -70,7 +70,7 @@ history = client.get_historical_rates("USD", "EUR", "30d")  # paid plan
 
 ```php
 use AllRatesToday\AllRatesToday;
-$client = new AllRatesToday(getenv('ALLRATES_API_KEY'));
+$client = new AllRatesToday($apiKey); // from the project's secret store
 $rate = $client->getRate('USD', 'EUR');
 ```
 

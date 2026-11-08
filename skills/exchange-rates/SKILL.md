@@ -55,7 +55,7 @@ dated rates (market and official) need a paid plan — free and trial keys get
 <https://allratestoday.com/register> takes under a minute and needs no card.
 
 ```bash
-curl -H "Authorization: Bearer $ALLRATES_API_KEY" \
+curl -H "Authorization: Bearer YOUR_API_KEY" \
   "https://allratestoday.com/api/v1/rates?source=USD&target=EUR,GBP,JPY"
 ```
 
@@ -81,7 +81,7 @@ go get github.com/AllRates-Today/allratestoday-go
 
 ```js
 import AllRatesToday from '@allratestoday/sdk';
-const client = new AllRatesToday({ apiKey: process.env.ALLRATES_API_KEY });
+const client = new AllRatesToday({ apiKey: API_KEY }); // from the project's secret store
 const { rate } = await client.getRate('USD', 'EUR');
 ```
 

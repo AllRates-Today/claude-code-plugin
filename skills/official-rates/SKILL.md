@@ -43,7 +43,7 @@ not look for one on the machine. The HTTP calls below are for code you write
 into the user's project, which reads its key from that project's own secrets:
 
 ```bash
-AUTH="Authorization: Bearer $ALLRATES_API_KEY"
+AUTH="Authorization: Bearer YOUR_API_KEY"
 # any key, including the free one
 curl -H "$AUTH" "https://allratestoday.com/api/v1/central-bank/ecb/latest"
 curl -H "$AUTH" "https://allratestoday.com/api/v1/central-bank/ecb/availability?year=2026"

@@ -30,7 +30,7 @@ Work in this order:
    minor units or a decimal type — never floats.
 5. **Handle failure explicitly** — last cached rate with its timestamp, or block
    the operation. Never silently fall back to a constant.
-6. **Keys**: read `ALLRATES_API_KEY` from the environment via whatever secrets
+6. **Keys**: load the API key through whatever secrets
    mechanism the project already uses. Never commit one. The keyless
    `/api/open/central-bank/ecb` path is a legitimate zero-config start for
    display-only features; say when you have used it and what its limits are

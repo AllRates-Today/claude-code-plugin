@@ -1,7 +1,7 @@
 {
   "name": "allratestoday",
   "description": "Currency exchange rates for Claude Code: live mid-market rates for 160+ currencies, official rates from 123 central banks and 6 tax authorities, plus guidance for wiring either into your project. Works with no API key.",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "author": {
     "name": "AllRatesToday",
     "url": "https://allratestoday.com"
@@ -19,5 +19,16 @@
     "i18n",
     "pricing"
   ],
-  "icon": "assets/icon.svg"
+  "icon": ".claude-plugin/icon.png",
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "AllRatesToday API key (optional)",
+      "description": "Leave blank to use the free keyless mode (latest official rates). Add a key from https://allratestoday.com/register for live mid-market rates; history and past dates need a paid plan.",
+      "required": false,
+      "sensitive": true,
+      "default": "none"
+    }
+  },
+  "privacyPolicyUrl": "https://allratestoday.com/privacy-policy/"
 }

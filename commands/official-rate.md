@@ -1,7 +1,7 @@
 ---
 description: Get the official rate published by a central bank or tax authority
 argument-hint: [ecb USD EUR]
-allowed-tools: [Bash, Read]
+allowed-tools: [Read]
 ---
 
 # Official rate
@@ -16,16 +16,14 @@ Work out the source code (`ecb`, `fed`, `boe`, `boj`, `rbi`, `hmrc`,
 you are unsure of its code, list the covered sources first — MCP
 `list_central_banks`, or `skills/official-rates/references/sources.md`.
 
-- Latest official table, no key needed:
+- Latest official table, no key needed: MCP `get_official_rates` with `bank`,
+  `source`, `target`. If the MCP server is not connected:
   ```bash
   curl -sS "https://allratestoday.com/api/open/central-bank/BANK?source=SRC&target=TGT"
   ```
-- A specific past date (needs `ALLRATES_API_KEY` on a paid plan; free and
-  trial keys get `403`, so say so rather than retrying):
-  ```bash
-  curl -sS -H "Authorization: Bearer $ALLRATES_API_KEY" \
-    "https://allratestoday.com/api/v1/central-bank/BANK/YYYY-MM-DD?source=SRC&target=TGT"
-  ```
+- A specific past date: `get_official_rates` with `date=YYYY-MM-DD`. This needs
+  an API key on a paid plan in the plugin settings; free and trial keys get
+  `403`, so say so rather than retrying.
 
 Always report the `rate_date` the response came back with — it may be earlier
 than the date requested, because the source did not publish that day, and that

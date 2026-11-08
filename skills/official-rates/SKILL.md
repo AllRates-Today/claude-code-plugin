@@ -31,10 +31,16 @@ published, with its own `rate_date`. Free to use with a visible attribution link
 back to allratestoday.com — the response carries the exact wording in
 `attribution`.
 
-With this plugin's MCP servers connected, `list_central_banks` and
+With this plugin's MCP server connected, `list_central_banks` and
 `get_official_rates` do the same without shelling out.
 
 ## Keyed: latest, calendars, cross-source comparison, and (paid) dates and history
+
+From this session, use the MCP tools: `get_official_rates` (with `date` for a
+past day), `get_publication_calendar`, `compare_official_rates` and
+`get_official_rate_history`. They use the key from the plugin settings, so do
+not look for one on the machine. The HTTP calls below are for code you write
+into the user's project, which reads its key from that project's own secrets:
 
 ```bash
 AUTH="Authorization: Bearer $ALLRATES_API_KEY"

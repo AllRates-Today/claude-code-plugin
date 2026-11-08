@@ -15,7 +15,7 @@ Install just the two skills (`exchange-rates`, `official-rates`):
 npx skills add AllRates-Today/claude-code-plugin
 ```
 
-**No API key needed to start.** Both MCP servers run keyless out of the box.
+**No API key needed to start.** The hosted MCP server runs keyless out of the box.
 
 ## What you get
 
@@ -38,12 +38,16 @@ npx skills add AllRates-Today/claude-code-plugin
 | `/fx-history USD EUR 30d` | Historical series for a pair (paid plan) |
 | `/add-currency-support` | Reads your project and wires rates in the way that project already does things |
 
-**Two MCP servers**, so the model can fetch rates directly:
-
-- [`@allratestoday/mcp-server`](https://www.npmjs.com/package/@allratestoday/mcp-server)
-  — live mid-market rates, 160+ currencies, the Daily Reference Rate (16:00 London fix) and a `request_trial_key` tool that self-issues a 100-call, 7-day key when the keyless tools are not enough
-- [`@allratestoday/central-bank-mcp`](https://www.npmjs.com/package/@allratestoday/central-bank-mcp)
-  — official tables, publication calendars, and (paid plan) dated tables and history
+**One hosted MCP server**, so the model can fetch rates directly:
+[`https://allratestoday.com/api/mcp`](https://allratestoday.com/mcp/). Nothing
+runs on your machine. Its 11 tools cover live mid-market rates for 160+
+currencies, official tables from 123 central banks and 6 tax authorities,
+publication calendars, the Daily Reference Rate (16:00 London fix), and a
+`request_trial_key` tool that self-issues a 100-call, 7-day key when the keyless
+tools are not enough. Prefer a local stdio server?
+[`@allratestoday/mcp-server`](https://www.npmjs.com/package/@allratestoday/mcp-server) and
+[`@allratestoday/central-bank-mcp`](https://www.npmjs.com/package/@allratestoday/central-bank-mcp)
+expose the same tools.
 
 The skills also point at the right package when Claude writes the integration:
 [`@allratestoday/sdk`](https://www.npmjs.com/package/@allratestoday/sdk) /
@@ -54,7 +58,7 @@ for official ones.
 
 ## Keyless vs keyed
 
-Installed with no configuration, the plugin answers from the open, edge-cached
+Installed with no key, the plugin answers from the open, edge-cached
 endpoints: the official ECB daily reference rate (~30 major currencies) and the
 latest official table of any covered central bank or tax authority. That is
 enough for most "what is this in EUR" work and for display-only features.
@@ -72,11 +76,9 @@ minute) adds real-time mid-market rates across 160+ currencies, multi-target loo
 publication calendars, and cross-source comparison. All history and dated rates
 — mid-market history, dated official tables and official history — need a paid
 plan (free and trial keys get a 403).
-Set it once and both servers pick it up:
-
-```bash
-export ALLRATES_API_KEY=art_live_...
-```
+Claude Code asks for it when you enable the plugin (leave it blank to stay
+keyless) and keeps it in your system's secure credential store. To add or
+change it later, open `/plugin`, pick **allratestoday**, and edit its settings.
 
 ## Why it exists
 

@@ -1,7 +1,7 @@
 ---
 description: Wire live or official exchange rates into the current project
 argument-hint: [what needs converting]
-allowed-tools: [Read, Glob, Grep, Bash, Write, Edit, WebFetch]
+allowed-tools: [Read, Grep, Glob]
 ---
 
 # Add currency support to this project

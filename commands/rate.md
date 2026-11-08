@@ -1,7 +1,7 @@
 ---
 description: Look up a current exchange rate for a currency pair
 argument-hint: [USD EUR]
-allowed-tools: [Bash, Read]
+allowed-tools: [Read]
 ---
 
 # Current exchange rate
@@ -15,16 +15,12 @@ parses, ask for the pair — do not guess.
 
 Then fetch it. Never answer from memory.
 
-1. If the `allratestoday` MCP server is connected, call `get_exchange_rate`.
-2. Otherwise:
+1. Call the `allratestoday` MCP tool `get_exchange_rate`. With an API key in
+   the plugin settings it returns the live mid-market rate; without one, the
+   latest ECB official rate.
+2. Only if the MCP server is not connected, use the keyless endpoint:
    ```bash
    curl -sS "https://allratestoday.com/api/open/central-bank/ecb?source=SRC&target=TGT"
-   ```
-   and if `ALLRATES_API_KEY` is set in the environment, prefer the live
-   mid-market rate instead:
-   ```bash
-   curl -sS -H "Authorization: Bearer $ALLRATES_API_KEY" \
-     "https://allratestoday.com/api/rate?source=SRC&target=TGT"
    ```
 
 Report in two lines: the rate, then what it is — either "live mid-market" or

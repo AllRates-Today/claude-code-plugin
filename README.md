@@ -8,6 +8,13 @@ fetches them instead of remembering them.
 /plugin install allratestoday@allratestoday
 ```
 
+Using Cursor, Codex, Gemini CLI or another [Agent Skills](https://agentskills.io) client?
+Install just the two skills (`exchange-rates`, `official-rates`):
+
+```
+npx skills add AllRates-Today/claude-code-plugin
+```
+
 **No API key needed to start.** Both MCP servers run keyless out of the box.
 
 ## What you get

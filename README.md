@@ -96,6 +96,7 @@ distinction — the one that quietly breaks tax filings — explicit.
 - [Status](https://allratestoday.com/status)
 - [Postman collection](https://allratestoday.com/postman/)
 - [ChatGPT app](https://chatgpt.com/plugins/plugin_asdk_app_6ae1e76098f48191a285ac3f5ab7a83b) — ask ChatGPT for live and official central bank rates
+- [OpenAPI reference on Bump.sh](https://bump.sh/allratestoday/doc/allratestoday-api) — also on [SwaggerHub](https://app.swaggerhub.com/apis-docs/allratestoday/allratestoday-exchange-rate-central-bank-rates-api/2.2.0)
 - [GitHub](https://github.com/AllRates-Today/claude-code-plugin)
 
 MIT licensed.

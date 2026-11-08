@@ -36,7 +36,7 @@ If this plugin's MCP servers are connected, prefer the `get_exchange_rate` and
 | The task | Rate to use | Endpoint |
 |---|---|---|
 | Show a price in the visitor's currency, convert in a checkout, a converter UI | **Live mid-market** — moves continuously | `GET /api/rate?source=USD&target=EUR` |
-| Invoice, tax return, customs, audit, month-end books | **Official published** — fixed once published, has an authority behind it | `GET /api/v1/central-bank/{bank}/{date}` |
+| Invoice, tax return, customs, audit, month-end books | **Official** — fixed once published, has an authority behind it | `GET /api/v1/central-bank/{bank}/{date}` |
 | A chart, a trend, "how has X moved" | Historical series (paid plans) | `GET /api/historical-rates?source=&target=&period=7d` |
 | One base against many targets in one call | Multi-target | `GET /api/v1/rates?source=USD&target=EUR,GBP,JPY` |
 
@@ -89,7 +89,7 @@ For per-language snippets, response shapes, error codes, output formats
 (json/csv/xml/xlsx) and the React price-localizer, read
 `references/integration.md`.
 
-These packages serve **mid-market** rates only. For official published rates,
+These packages serve **mid-market** rates only. For official rates,
 install `@allratestoday/central-bank` or `allratestoday-central-bank` instead
 and read `../official-rates/SKILL.md`.
 

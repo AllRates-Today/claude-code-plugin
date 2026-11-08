@@ -14,7 +14,7 @@ writing code.
 Work in this order:
 
 1. **Establish which rate the feature needs** — live mid-market for display and
-   checkout, official published rates for invoices, tax, customs or statutory
+   checkout, official rates for invoices, tax, customs or statutory
    accounting. Ask if it is genuinely ambiguous; the answer changes the
    endpoint, the caching, and the audit story.
 2. **Read the codebase before adding anything.** Find the language, package

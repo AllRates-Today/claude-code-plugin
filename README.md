@@ -24,7 +24,7 @@ npx skills add AllRates-Today/claude-code-plugin
 - `exchange-rates` — live mid-market rates, currency conversion, localized
   pricing, historical series, and the rules for wiring any of it into a
   codebase (cache by pair, money in minor units, explicit failure behaviour).
-- `official-rates` — the published rate from a *named* institution, which is
+- `official-rates` — the official rate from a *named* institution, which is
   what invoices, VAT returns, customs valuation and statutory accounting
   actually require. [122 central banks and 4 tax authorities](https://allratestoday.com/central-bank-rates-api/institutions/).
 
@@ -43,20 +43,20 @@ npx skills add AllRates-Today/claude-code-plugin
 - [`@allratestoday/mcp-server`](https://www.npmjs.com/package/@allratestoday/mcp-server)
   — live mid-market rates, 160+ currencies, the Daily Reference Rate (16:00 London fix) and a `request_trial_key` tool that self-issues a 100-call, 7-day key when the keyless tools are not enough
 - [`@allratestoday/central-bank-mcp`](https://www.npmjs.com/package/@allratestoday/central-bank-mcp)
-  — official published tables, publication calendars, and (paid plan) dated tables and history
+  — official tables, publication calendars, and (paid plan) dated tables and history
 
 The skills also point at the right package when Claude writes the integration:
 [`@allratestoday/sdk`](https://www.npmjs.com/package/@allratestoday/sdk) /
 [`allratestoday`](https://pypi.org/project/allratestoday/) for mid-market rates,
 [`@allratestoday/central-bank`](https://www.npmjs.com/package/@allratestoday/central-bank) /
 [`allratestoday-central-bank`](https://pypi.org/project/allratestoday-central-bank/)
-for official published ones.
+for official ones.
 
 ## Keyless vs keyed
 
 Installed with no configuration, the plugin answers from the open, edge-cached
 endpoints: the official ECB daily reference rate (~30 major currencies) and the
-latest published table of any covered central bank or tax authority. That is
+latest official table of any covered central bank or tax authority. That is
 enough for most "what is this in EUR" work and for display-only features.
 
 **Attribution.** Keyless use requires a visible, followable link to AllRatesToday wherever the rates are shown (a footer, an about page, a README). With an API key it is appreciated but not required.

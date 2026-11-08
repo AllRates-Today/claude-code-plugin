@@ -4,7 +4,7 @@ argument-hint: [ecb USD EUR]
 allowed-tools: [Bash, Read]
 ---
 
-# Official published rate
+# Official rate
 
 The user asked for: $ARGUMENTS
 
@@ -16,7 +16,7 @@ Work out the source code (`ecb`, `fed`, `boe`, `boj`, `rbi`, `hmrc`,
 you are unsure of its code, list the covered sources first — MCP
 `list_central_banks`, or `skills/official-rates/references/sources.md`.
 
-- Latest published table, no key needed:
+- Latest official table, no key needed:
   ```bash
   curl -sS "https://allratestoday.com/api/open/central-bank/BANK?source=SRC&target=TGT"
   ```

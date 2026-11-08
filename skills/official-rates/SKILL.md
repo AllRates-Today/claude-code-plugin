@@ -3,7 +3,7 @@ name: official-rates
 description: Use the official exchange rate published by a named institution — a central bank or tax authority — rather than a market rate. Load whenever the task involves invoices, VAT or tax returns, customs valuation, transfer pricing, statutory or month-end accounting, audit evidence, or any rule that names a publisher ("the ECB reference rate", "the HMRC monthly rate", "the RBI reference rate", "the rate in force on the invoice date"). Also load when asked which central banks publish rates, or for a rate on a specific past date.
 ---
 
-# Official published rates
+# Official rates
 
 ## Why this is a different thing from a market rate
 
@@ -19,7 +19,7 @@ market rate for a tax filing produces numbers nobody can reconcile.
 **Ask which publisher the rule names.** If the answer is "whatever's current",
 it is a market-rate task: use the `exchange-rates` skill instead.
 
-## Keyless: the latest published table of any source
+## Keyless: the latest official table of any source
 
 ```bash
 curl "https://allratestoday.com/api/open/central-bank/hmrc"
@@ -105,6 +105,6 @@ pair = cb.latest("ecb", source="USD", target="EUR")
 
 Methods: `latest` (keyless), `sources`, `for_date`/`forDate`, `history`,
 `availability`, `compare`. Do NOT reach for the mid-market packages
-(`@allratestoday/sdk`, `allratestoday`) here — they do not serve published rates.
+(`@allratestoday/sdk`, `allratestoday`) here — they do not serve official rates.
 
 Hub page: <https://allratestoday.com/central-bank-rates-api/>

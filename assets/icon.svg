@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!--
+    Golden-ratio related geometry (φ ≈ 1.618):
+    Outer circle radius R = 60
+    Middle circle radius = R / √φ ≈ 46
+    Rounded-square side = R / φ ≈ 37.1  (width = height)
+    Corner radius = side / φ³ ≈ 5.4  (little rounding)
+  -->
+
+  <!-- Outer coin -->
+  <circle cx="64" cy="64" r="60" fill="#25A557"/>
+
+  <!-- Middle circle (white) -->
+  <circle cx="64" cy="64" r="46" fill="#FFFFFF"/>
+
+  <!-- Rounded square (dark, centred, width = height, φ-based) -->
+  <rect x="45.45" y="45.45" width="37.10" height="37.10" rx="5.40" ry="5.40" fill="#0F5F3A"/>
+</svg>

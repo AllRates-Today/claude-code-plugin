@@ -9,14 +9,14 @@ number from memory.
 
 | Endpoint | Key? | Returns |
 |---|---|---|
-| `GET /open/central-bank/{bank}` | no | Latest published table for one source. `?source=&target=` narrows to one pair. |
+| `GET /open/central-bank/{bank}` | no | Latest official table for one source. `?source=&target=` narrows to one pair. |
 | `GET /open/geo` | no | `{ country, currency }` for the caller's IP, from Cloudflare's edge. |
 | `GET /v1/symbols` | no | `{ currencies: [{ code, name, symbol }], count }` — 160+ ISO 4217 fiat codes. |
 | `GET /rate?source=&target=` | yes | `{ rate, source }` — live mid-market, 1 source = `rate` target. |
 | `GET /v1/rates?source=&target=EUR,GBP&time=&group=` | yes | One row per target × bucket. `time` is ISO 8601 (paid plans; so are `from`/`to`, max 366 days); `group` ∈ hour/day/week/month. |
 | `GET /historical-rates?source=&target=&period=` | paid | `period` ∈ `1d`(hourly) `7d` `30d`(daily) `1y`(weekly), window ends now. Free and trial keys get `403 historical_requires_paid_plan`. |
 | `GET /v1/central-banks` | yes | Every covered source with coverage dates. |
-| `GET /v1/central-bank/{bank}/latest` \| `/{YYYY-MM-DD}` \| `/history` \| `/availability` | yes | Official published tables. See the `official-rates` skill. |
+| `GET /v1/central-bank/{bank}/latest` \| `/{YYYY-MM-DD}` \| `/history` \| `/availability` | yes | Official tables. See the `official-rates` skill. |
 
 Table endpoints also take `?format=csv|xml|xlsx` alongside the default JSON.
 
@@ -74,7 +74,7 @@ $client = new AllRatesToday(getenv('ALLRATES_API_KEY'));
 $rate = $client->getRate('USD', 'EUR');
 ```
 
-For official published rates there are dedicated packages, keyless by default:
+For official rates there are dedicated packages, keyless by default:
 
 ```bash
 npm install @allratestoday/central-bank    # JS/TS

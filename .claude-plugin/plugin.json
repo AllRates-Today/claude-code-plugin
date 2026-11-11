@@ -1,7 +1,7 @@
 {
   "name": "allratestoday",
-  "description": "Currency exchange rates for Claude Code: live mid-market rates for 160+ currencies, official rates from 123 central banks and 6 tax authorities, plus guidance for wiring either into your project. Works with no API key.",
-  "version": "1.1.1",
+  "description": "Currency exchange rates for Claude Code: live mid-market rates for 160+ currencies, official rates from 130+ central banks and tax authorities, plus guidance for wiring either into your project. Works with no API key.",
+  "version": "1.1.2",
   "author": {
     "name": "AllRatesToday",
     "url": "https://allratestoday.com"

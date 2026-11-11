@@ -26,7 +26,7 @@ npx skills add AllRates-Today/claude-code-plugin
   codebase (cache by pair, money in minor units, explicit failure behaviour).
 - `official-rates` — the official rate from a *named* institution, which is
   what invoices, VAT returns, customs valuation and statutory accounting
-  actually require. [122 central banks and 4 tax authorities](https://allratestoday.com/central-bank-rates-api/institutions/).
+  actually require. [130+ central banks and tax authorities](https://allratestoday.com/central-bank-rates-api/institutions/).
 
 **Five slash commands:**
 
@@ -41,7 +41,7 @@ npx skills add AllRates-Today/claude-code-plugin
 **One hosted MCP server**, so the model can fetch rates directly:
 [`https://allratestoday.com/api/mcp`](https://allratestoday.com/mcp/). Nothing
 runs on your machine. Its 11 tools cover live mid-market rates for 160+
-currencies, official tables from 123 central banks and 6 tax authorities,
+currencies, official tables from 130+ central banks and tax authorities,
 publication calendars, the Daily Reference Rate (16:00 London fix), and a
 `request_trial_key` tool that self-issues a 100-call, 7-day key when the keyless
 tools are not enough. Prefer a local stdio server?
